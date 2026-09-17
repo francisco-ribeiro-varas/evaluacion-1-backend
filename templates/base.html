@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Catálogo de juegos{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+    <header class="encabezado">
+        <a class="marca" href="{% url 'evaluacion:inicio' %}">
+            <img src="{% static 'imagenes/logo.svg' %}" alt="Logo del catálogo">
+            <span>Catálogo Pixel</span>
+        </a>
+    </header>
+    <main class="contenedor">
+        {% block contenido %}{% endblock %}
+    </main>
+</body>
+</html>

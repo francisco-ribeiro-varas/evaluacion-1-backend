@@ -33,11 +33,39 @@ JUEGOS = [
 
 
 def inicio(request):
-    return render(request, "index.html", {"juegos": JUEGOS})
+    precio_total = sum(juego["precio"] for juego in JUEGOS)
+    precio_promedio = round(precio_total / len(JUEGOS))
+    juegos_en_oferta = sum(1 for juego in JUEGOS if juego["oferta"])
+
+    contexto = {
+        "juegos": JUEGOS,
+        "precio_promedio": precio_promedio,
+        "juegos_en_oferta": juegos_en_oferta,
+    }
+    return render(request, "evaluacion/inicio.html", contexto)
 
 
 def detalle(request, id):
-    juego = next((juego for juego in JUEGOS if juego["id"] == id), None)
+    juego = None
+    for juego_actual in JUEGOS:
+        if juego_actual["id"] == id:
+            juego = juego_actual
+            break
+
     if juego is None:
         raise Http404("El juego no existe")
-    return render(request, "detalle.html", {"juego": juego})
+
+    precio_descuento = round(juego["precio"] * 0.8)
+    if juego["multijugador"] and not juego["oferta"]:
+        etiqueta = "Para jugar en grupo"
+    elif juego["oferta"]:
+        etiqueta = "En oferta"
+    else:
+        etiqueta = "Aventura individual"
+
+    contexto = {
+        "juego": juego,
+        "precio_descuento": precio_descuento,
+        "etiqueta": etiqueta,
+    }
+    return render(request, "evaluacion/detalle.html", contexto)

@@ -1,0 +1,9 @@
+ayudame a conectar el inicio con un boton de detalle de juego para que valla a detalle 
+me ayudo a conectar los dos html 
+
+ayudame a crear el listado del detalle en detalle.html 
+me ayudo para mostrar los detalles del juego
+
+ayudame a crear el estilos.css 
+me ayudo con el estilo de la pagina
+

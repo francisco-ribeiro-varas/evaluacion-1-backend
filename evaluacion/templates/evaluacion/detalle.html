@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block titulo %}{{ juego.titulo }} | Catálogo Pixel{% endblock %}
+
+{% block contenido %}
+<article class="detalle">
+    <p class="sobrelinea">Detalle del juego</p>
+    <h1>{{ juego.titulo }}</h1>
+    <p class="etiqueta">{{ etiqueta }}</p>
+
+    <dl class="datos-juego">
+        <dt>Plataforma</dt>
+        <dd>{{ juego.plataforma }}</dd>
+        <dt>Precio original</dt>
+        <dd>${{ juego.precio }}</dd>
+        <dt>Precio con descuento</dt>
+        <dd>${{ precio_descuento }}</dd>
+        <dt>Duración</dt>
+        <dd>{{ juego.horas }} horas</dd>
+        <dt>Multijugador</dt>
+        <dd>{{ juego.multijugador|yesno:"Sí,No" }}</dd>
+        <dt>En oferta</dt>
+        <dd>{{ juego.oferta|yesno:"Sí,No" }}</dd>
+        <dt>Descripción</dt>
+        <dd>{{ juego.descripcion|default:"Sin descripción disponible." }}</dd>
+    </dl>
+
+    <a class="enlace-volver" href="{% url 'evaluacion:inicio' %}">← Volver al catalogo</a>
+</article>
+{% endblock %}
