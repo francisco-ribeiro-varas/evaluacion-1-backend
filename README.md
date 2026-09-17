@@ -57,13 +57,7 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-5. Crea o actualiza la base de datos:
-
-```bash
-python manage.py migrate
-```
-
-6. Comprueba la configuracion del proyecto:
+5. Comprueba la configuracion del proyecto:
 
 ```bash
 python manage.py check
